@@ -47,11 +47,13 @@ public class CommandFlippers extends Command {
 
 		if (Lt != 0.0) {
 			// left trigger is being pressed
-			RobotMap.flippersRobotDrive21.tankDrive(Lt, -Lt);
+			//RobotMap.flippersRobotDrive21.tankDrive(Lt, -Lt);
+			RobotMap.flippersFlipperLeft.set(Lt);
 		}
 		else if (Rt != 0) {
 			// right trigger is being pressed
-			RobotMap.flippersRobotDrive21.tankDrive(-Rt, Rt);
+			//RobotMap.flippersRobotDrive21.tankDrive(-Rt, Rt);
+			RobotMap.flippersFlipperRight.set(-Rt);
 		}
 		else {
 			// both or being pressed, let's not break anything
