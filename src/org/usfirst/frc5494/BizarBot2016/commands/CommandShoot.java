@@ -1,7 +1,6 @@
 package org.usfirst.frc5494.BizarBot2016.commands;
 
 import org.usfirst.frc5494.BizarBot2016.Robot;
-import org.usfirst.frc5494.BizarBot2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -25,10 +24,10 @@ public class CommandShoot extends Command
 	@Override
 	protected void execute()
 	{
-		// 2 at the same time on same button
-		
-		// 2 others independently
-		
+		//RobotMap.shooterSolenoid1;
+		//RobotMap.shooterSolenoid2;
+		//RobotMap.shooterSolenoid3;
+		//RobotMap.shooterSolenoid4;
 	}
 
 	@Override

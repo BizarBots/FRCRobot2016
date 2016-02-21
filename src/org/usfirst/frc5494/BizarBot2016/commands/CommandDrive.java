@@ -54,7 +54,13 @@ public class CommandDrive extends Command {
     	// 2 3
     	
     	// tank drive
-    	//RobotMap.driveSystemTankRobotDrive41.tankDrive(LJy, RJy);
+    	RobotMap.driveSystemRobotDrive41.tankDrive(LJy, RJy);
+    	
+    	// arcade drive
+    	//if (RJy != 0)
+    	//	RobotMap.driveSystemRobotDrive41.tankDrive(RJy, RJy);
+    	//else
+    	//	RobotMap.driveSystemRobotDrive41.tankDrive(RJx, -RJx);
     }
 
     // Make this return true when this Command no longer needs to run execute()
