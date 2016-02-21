@@ -12,7 +12,7 @@
 package org.usfirst.frc5494.BizarBot2016;
 
 import org.usfirst.frc5494.BizarBot2016.commands.AutonomousCommand;
-import org.usfirst.frc5494.BizarBot2016.commands.CommandDriveTank;
+import org.usfirst.frc5494.BizarBot2016.commands.CommandDrive;
 import org.usfirst.frc5494.BizarBot2016.commands.CommandFlippers;
 import org.usfirst.frc5494.BizarBot2016.commands.CommandLift;
 
@@ -66,7 +66,7 @@ public class OI {
 
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
-        SmartDashboard.putData("CommandDriveTank", new CommandDriveTank());
+        SmartDashboard.putData("CommandDriveTank", new CommandDrive());
         SmartDashboard.putData("CommandFlippers", new CommandFlippers());
         SmartDashboard.putData("CommandLift", new CommandLift());
 
