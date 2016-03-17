@@ -14,8 +14,6 @@ package org.usfirst.frc5494.BizarBot2016.commands;
 import org.usfirst.frc5494.BizarBot2016.Robot;
 import org.usfirst.frc5494.BizarBot2016.RobotMap;
 
-import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -25,14 +23,11 @@ public class CommandDrive extends Command
 {
 	public CommandDrive() {
     	requires(Robot.driveSystem);
-    	i2c = new I2C(Port.kOnboard, 0);
     }
     
     protected void initialize() {
     }
-    
-    I2C i2c;
-    
+        
     protected void execute() {
     	// made for XBox Controller
     	double LJy = -Robot.oi.joystickDriver.getRawAxis(1); // left joystick y axis
@@ -49,14 +44,6 @@ public class CommandDrive extends Command
     	
     	// arcade drive
     	RobotMap.driveSystemRobotDrive41.arcadeDrive(-LJy, LJx);
-    	
-    	// misc controls
-    	RobotMap.rawPWM9.set(RJy);
-    	RobotMap.rawPWM6.set(RJx);
-    	
-    	// set display for voltage meter
-    	i2c.broadcast(1, 14);
-    	
     }
     
     protected boolean isFinished() {
