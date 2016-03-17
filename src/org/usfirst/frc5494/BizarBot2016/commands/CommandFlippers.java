@@ -19,24 +19,43 @@ import org.usfirst.frc5494.BizarBot2016.RobotMap;
  */
 public class CommandFlippers extends Command
 {
-	public CommandFlippers() {
+	public CommandFlippers()
+	{
 		requires(Robot.flippers);
 	}
-	protected void initialize() {
+	
+	protected void initialize()
+	{
 	}
-	protected void execute() {
+	
+	protected void execute()
+	{
 		double Lt = Robot.oi.joystickOperator.getRawAxis(1); // left joystick  y //(2); // left trigger axis
 		double Rt = Robot.oi.joystickOperator.getRawAxis(5); // right joystick y //(3); // right trigger axis
 		
-		RobotMap.flippersFlipperLeft.set(  Lt / 2);
-		RobotMap.flippersFlipperRight.set(-Rt / 2);
+		boolean lst = RobotMap.flippersLimitSwitchT.get();
+		boolean lsb = RobotMap.flippersLimitSwitchB.get();
+		
+		if ((Lt > 0 && !lst) || (Lt < 0 && !lsb)) {
+			RobotMap.flippersFlipperLeft.set(  Lt / 2);
+			RobotMap.flippersFlipperRight.set(-Rt / 2);
+		}
+		else {
+			RobotMap.flippersFlipperLeft.set(0);
+			RobotMap.flippersFlipperRight.set(0);
+		}
 	}
 
-	protected boolean isFinished() {
+	protected boolean isFinished()
+	{
 		return false;
 	}
-	protected void end() {
+	
+	protected void end()
+	{
 	}
-	protected void interrupted() {
+	
+	protected void interrupted()
+	{
 	}
 }
