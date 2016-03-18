@@ -18,12 +18,12 @@ import org.usfirst.frc5494.BizarBot2016.subsystems.Flippers;
 import org.usfirst.frc5494.BizarBot2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.USBCamera;
 
 /**
@@ -49,7 +49,7 @@ public class Robot extends IterativeRobot {
 	static volatile double[] centerXArray;
 	static volatile double[] gripAreaArray;
 	static volatile double lastCamAngle = 0;
-
+	
 	static final double[] DUMMY = { 5000 };
 
 	public static OI oi;
@@ -111,9 +111,7 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 
-		// set voltage meter
-		RobotMap.digitBoard.display(DriverStation.getInstance().getBatteryVoltage());
-
+		displayVoltage();
 		updateGripNetwork();
 	}
 
@@ -129,9 +127,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 
-		// set voltage meter
-		RobotMap.digitBoard.display(DriverStation.getInstance().getBatteryVoltage());
-
+		displayVoltage();
 		updateGripNetwork();
 	}
 
@@ -151,9 +147,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
-		// set voltage meter
-		RobotMap.digitBoard.display(DriverStation.getInstance().getBatteryVoltage());
-
+		displayVoltage();
 		updateGripNetwork();
 	}
 
@@ -162,9 +156,15 @@ public class Robot extends IterativeRobot {
 	 */
 	public void testPeriodic() {
 		LiveWindow.run();
+		displayVoltage();
 		updateGripNetwork();
 	}
-
+	
+	private void displayVoltage() {
+		RobotMap.digitBoard.display(12.34);
+		//RobotMap.digitBoard.display(DriverStation.getInstance().getBatteryVoltage());
+	}
+	
 	private void updateGripNetwork() {
 		Robot.centerXArray = ntable.getSubTable("myContoursReport").getNumberArray("centerX", DUMMY);
 		Robot.gripAreaArray = ntable.getSubTable("myContoursReport").getNumberArray("area", DUMMY);
