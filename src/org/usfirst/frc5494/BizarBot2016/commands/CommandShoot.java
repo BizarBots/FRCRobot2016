@@ -40,7 +40,9 @@ public class CommandShoot extends Command
 		if (cv == Value.kReverse) {
 			// if the on button is being pressed
 			if (b) {
-				RobotMap.shooterVacuum.set(0);
+				RobotMap.shooterVacuum1.set(0);
+				RobotMap.shooterVacuum2.set(0);
+				RobotMap.shooterVacuum3.set(0);
 				RobotMap.shooterSolenoid3.set(true);
 				RobotMap.shooterSolenoid1.set(Value.kForward);
 				RobotMap.shooterSolenoid2.set(Value.kForward);
@@ -54,7 +56,9 @@ public class CommandShoot extends Command
 				RobotMap.shooterSolenoid1.set(Value.kReverse);
 				RobotMap.shooterSolenoid2.set(Value.kReverse);
 				RobotMap.shooterSolenoid3.set(false);
-				RobotMap.shooterVacuum.set(1);
+				RobotMap.shooterVacuum1.set(1);
+				RobotMap.shooterVacuum2.set(1);
+				RobotMap.shooterVacuum3.set(1);
 			}
 		}
 		
