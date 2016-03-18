@@ -32,8 +32,6 @@ public class CommandDrive extends Command
     	// made for XBox Controller
     	double LJy = -Robot.oi.joystickDriver.getRawAxis(1); // left joystick y axis
     	double LJx = -Robot.oi.joystickDriver.getRawAxis(0); // left joystick x axis
-    	double RJy = -Robot.oi.joystickDriver.getRawAxis(5); // right joystick y axis
-    	double RJx = -Robot.oi.joystickDriver.getRawAxis(4); // right joystick x axis
     	
     	// motor mapping for PWM cables
     	// 0 1
