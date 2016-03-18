@@ -41,8 +41,8 @@ public class RobotMap
     public static SpeedController flippersFlipperLeft;
     public static SpeedController flippersFlipperRight;
     public static RobotDrive flippersRobotDrive21;
-    public static DigitalInput flippersLimitSwitchT;
-    public static DigitalInput flippersLimitSwitchB;
+    public static DigitalInput flippersLimitSwitchL;
+    public static DigitalInput flippersLimitSwitchR;
     
     public static SpeedController liftEndGameLift;
     
@@ -106,8 +106,8 @@ public class RobotMap
         
         encoder = new Encoder(0, 1, false, EncodingType.k4X);
         
-        flippersLimitSwitchT = new DigitalInput(2);
-        flippersLimitSwitchB = new DigitalInput(3);
+        flippersLimitSwitchL = new DigitalInput(2);
+        flippersLimitSwitchR = new DigitalInput(3);
         
         digitBoard = new REVDigitBoard();
     }
