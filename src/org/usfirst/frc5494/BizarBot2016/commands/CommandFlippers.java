@@ -33,19 +33,10 @@ public class CommandFlippers extends Command
 		double Lt = Robot.oi.joystickOperator.getRawAxis(1); // left joystick  y //(2); // left trigger axis
 		double Rt = Robot.oi.joystickOperator.getRawAxis(5); // right joystick y //(3); // right trigger axis
 		
-		boolean lst = RobotMap.flippersLimitSwitchT.get();
-		boolean lsb = RobotMap.flippersLimitSwitchB.get();
-		
-		if ((Lt > 0 && !lst) || (Lt < 0 && !lsb)) {
-			RobotMap.flippersFlipperLeft.set(  Lt / 2);
-			RobotMap.flippersFlipperRight.set(-Rt / 2);
-		}
-		else {
-			RobotMap.flippersFlipperLeft.set(0);
-			RobotMap.flippersFlipperRight.set(0);
-		}
+		RobotMap.flippersFlipperLeft.set((RobotMap.flippersLimitSwitchL.get()) ? (Lt / 2) : 0);
+		RobotMap.flippersFlipperRight.set((RobotMap.flippersLimitSwitchR.get()) ? (-Rt / 2) : 0);
 	}
-
+	
 	protected boolean isFinished()
 	{
 		return false;
