@@ -4,6 +4,7 @@ import org.usfirst.frc5494.BizarBot2016.Robot;
 import org.usfirst.frc5494.BizarBot2016.RobotMap;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class CommandShoot extends Command
@@ -26,8 +27,8 @@ public class CommandShoot extends Command
 	@Override
 	protected void execute()
 	{
-		boolean b = Robot.oi.joystickOperator.getRawButton(1); // on  // a or b
-		boolean x = Robot.oi.joystickOperator.getRawButton(2); // off // b or x
+		boolean ob1 = Robot.oi.joystickOperator.getRawButton(1);
+		boolean ob2 = Robot.oi.joystickOperator.getRawButton(2);
 		Value cv = RobotMap.shooterSolenoid1.get(); // solenoid current value;
 		
 		// if solenoids are off, set them to reverse position
@@ -37,24 +38,26 @@ public class CommandShoot extends Command
 		}
 		
 		// solenoids are in reverse
-		if (cv == Value.kReverse) {
+		if (cv == Value.kReverse) { // a
 			// if the on button is being pressed
-			if (b) {
+			if (ob1) {
 				RobotMap.shooterVacuum1.set(0);
 				RobotMap.shooterVacuum2.set(0);
 				RobotMap.shooterVacuum3.set(0);
 				RobotMap.shooterSolenoid3.set(true);
+				Timer.delay(0.5);
 				RobotMap.shooterSolenoid1.set(Value.kForward);
 				RobotMap.shooterSolenoid2.set(Value.kForward);
 			}
 		}
 		
 		// solenoids are forward
-		if (cv == Value.kForward) {
+		if (cv == Value.kForward) { // b
 			// if the off button is being pressed
-			if (x) {
+			if (ob2) {
 				RobotMap.shooterSolenoid1.set(Value.kReverse);
 				RobotMap.shooterSolenoid2.set(Value.kReverse);
+				Timer.delay(0.2);
 				RobotMap.shooterSolenoid3.set(false);
 				RobotMap.shooterVacuum1.set(1);
 				RobotMap.shooterVacuum2.set(1);
@@ -64,11 +67,24 @@ public class CommandShoot extends Command
 		
 		// angle adjuster
 		//double distance = RobotMap.encoder.getDistance();
-		RobotMap.shooterAngler.set(-Robot.oi.joystickOperator.getRawAxis(4)); // right j x axis
 		
 		
+		
+		
+		double oa2 = Robot.oi.joystickOperator.getRawAxis(2); // operator left trigger
+		double oa3 = Robot.oi.joystickOperator.getRawAxis(3); // operator right trigger
+		
+		if (oa2 > 0) {
+			RobotMap.shooterAngler.set(oa2);
+		}
+		else if (oa3 > 0) {
+			RobotMap.shooterAngler.set(-oa3);
+		}
+		else {
+			RobotMap.shooterAngler.set(0);
+		}
 	}
-
+	
 	@Override
 	protected boolean isFinished()
 	{
